@@ -3,7 +3,7 @@
     <sections>
         <design>
             <groups>
-                <fallback translate="label">
+                <fallback translate="label" module="aoe_designfallback">
                     <label>Fallback</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>0</sort_order>
@@ -11,17 +11,17 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <fallback translate="label">
+                        <fallback translate="comment">
                             <label>Fallback configuration</label>
-                            <frontend_type>textarea</frontend_type>
+                            <frontend_model>aoe_designfallback/system_config_form_field_fallback</frontend_model>
+                            <backend_model>aoe_designfallback/system_config_backend_fallback</backend_model>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-							<comment><![CDATA[
+                            <comment><![CDATA[
 <b>Instructions:</b><br />
 Insert one line per fallback level.<br />
-Separate package name from theme name by a ":".<br />
 Use <b>{path/to/configuration}</b> for variables that will be replaced by their configured value.<br />
 Use <b>[current]</b> for using the package or theme that is currently set. In contrast to using {design/package/name} and {design/theme/default} this takes type-specific themes and design changes (System &gt; Design) into account.<br />
 First line has highest priority.<br /><br />
@@ -34,5 +34,5 @@ base:default]]></comment>
                 </fallback>
             </groups>
         </design>
-	</sections>
+    </sections>
 </config>

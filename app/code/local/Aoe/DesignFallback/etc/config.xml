@@ -1,47 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<modules>
-		<Aoe_DesignFallback>
-			<version>0.2.1</version>
-		</Aoe_DesignFallback>
-	</modules>
+    <modules>
+        <Aoe_DesignFallback>
+            <version>0.2.2</version>
+        </Aoe_DesignFallback>
+    </modules>
 
-	<global>
-		<helpers>
-			<aoe_designfallback>
-				<class>Aoe_DesignFallback_Helper</class>
-			</aoe_designfallback>
-		</helpers>
-		<models>
-			<aoe_designfallback>
-				<class>Aoe_DesignFallback_Model</class>
-			</aoe_designfallback>
-			<core>
-				<rewrite>
-					<design_package>Aoe_DesignFallback_Model_Design_Package</design_package>
-				</rewrite>
-			</core>
-		</models>
-	</global>
+    <global>
+        <helpers>
+            <aoe_designfallback>
+                <class>Aoe_DesignFallback_Helper</class>
+            </aoe_designfallback>
+        </helpers>
+        <blocks>
+            <aoe_designfallback>
+                <class>Aoe_DesignFallback_Block</class>
+            </aoe_designfallback>
+        </blocks>
+        <models>
+            <aoe_designfallback>
+                <class>Aoe_DesignFallback_Model</class>
+            </aoe_designfallback>
+            <core>
+                <rewrite>
+                    <design_package>Aoe_DesignFallback_Model_Design_Package</design_package>
+                </rewrite>
+            </core>
+        </models>
+    </global>
 
-	<frontend>
-		<layout>
-			<updates>
-				<aoe_designfallback module="Aoe_DesignFallback">
-					<file>aoe_designfallback/aoe_designfallback.xml</file>
-				</aoe_designfallback>
-			</updates>
-		</layout>
-	</frontend>
-
-	<default>
-		<design>
-			<fallback>
-				<fallback><![CDATA[[current]:[current]
-[current]:default
-base:default]]></fallback>
-			</fallback>
-		</design>
-	</default>
-
+    <default>
+        <design>
+            <fallback>
+                <fallback><![CDATA[a:3:{s:18:"_1392295069766_766";a:2:{s:7:"package";s:9:"[current]";s:5:"theme";s:9:"[current]";}s:18:"_1392295179888_888";a:2:{s:7:"package";s:9:"[current]";s:5:"theme";s:7:"default";}s:18:"_1392295198661_661";a:2:{s:7:"package";s:4:"base";s:5:"theme";s:7:"default";}}]]></fallback>
+            </fallback>
+        </design>
+    </default>
 </config>
