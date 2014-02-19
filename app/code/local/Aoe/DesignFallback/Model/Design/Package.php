@@ -33,12 +33,14 @@ class Aoe_DesignFallback_Model_Design_Package extends Mage_Core_Model_Design_Pac
     protected function _getFallbackScheme(array $defaults = array())
     {
         if (self::$_fallbackScheme === null) {
+            $store = Mage::app()->getStore($this->getStore());
+
             /** @var Aoe_DesignFallback_Model_System_Config_Backend_Fallback $model */
             $model = Mage::getModel('aoe_designfallback/system_config_backend_fallback');
             $model->setPath(self::XML_PATH_DESIGN_FALLBACK)
-                ->setValue(Mage::getStoreConfig('design/fallback/fallback', $this->getStore()))
-                ->setWebsite($this->getStore()->getWebsite()->getCode())
-                ->setStore($this->getStore()->getCode())
+                ->setValue(Mage::getStoreConfig('design/fallback/fallback', $store))
+                ->setWebsite($store->getWebsite()->getCode())
+                ->setStore($store->getCode())
                 ->afterLoad();
             $fallbackConfiguration = $model->getValue();
 
