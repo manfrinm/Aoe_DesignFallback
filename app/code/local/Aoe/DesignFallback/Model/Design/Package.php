@@ -10,6 +10,7 @@ class Aoe_DesignFallback_Model_Design_Package extends Mage_Core_Model_Design_Pac
      * @var array
      */
     static $_fallbackScheme = null;
+    private $_areas = array('frontend', 'adminhtml');
 
     /**
      * Check for files existence by specified scheme
@@ -45,34 +46,37 @@ class Aoe_DesignFallback_Model_Design_Package extends Mage_Core_Model_Design_Pac
             $fallbackConfiguration = $model->getValue();
 
             self::$_fallbackScheme = array();
-            foreach ($fallbackConfiguration as $item) {
-                $packageName = $this->_resolveConfiguration($item['package']);
-                if (!empty($packageName)) { // empty values will be evaluated to current package ...
-                    if (!$this->designPackageExists($packageName, $this->getArea())) {
-                        $packageName = Mage_Core_Model_Design_Package::DEFAULT_PACKAGE;
+            foreach ($this->_areas as $_area) {
+                foreach ($fallbackConfiguration as $item) {
+                    $packageName = $this->_resolveConfiguration($item['package']);
+                    if (!empty($packageName)) { // empty values will be evaluated to current package ...
+                        if (!$this->designPackageExists($packageName, $_area)) {
+                            $packageName = Mage_Core_Model_Design_Package::DEFAULT_PACKAGE;
+                        }
+                    } else {
+                        $packageName = $defaults['_package'];
                     }
-                } else {
-                    $packageName = $defaults['_package'];
-                }
 
-                $themeName = $this->_resolveConfiguration($item['theme']);
-                if (empty($themeName)) {
-                    $themeName = $defaults['_theme'];
-                }
+                    $themeName = $this->_resolveConfiguration($item['theme']);
+                    if (empty($themeName)) {
+                        $themeName = $defaults['_theme'];
+                    }
 
-                $params = array(
-                    '_package' => $packageName,
-                    '_theme'   => $themeName,
-                );
+                    $params = array(
+                        '_package' => $packageName,
+                        '_theme' => $themeName,
+                    );
 
-                // avoid exact duplicates that are neighbours
-                if ($params !== end(self::$_fallbackScheme)) {
-                    self::$_fallbackScheme[] = $params;
+                    // avoid exact duplicates that are neighbours
+                    if ($params !== end(self::$_fallbackScheme)) {
+                        self::$_fallbackScheme[$_area][] = $params;
+                    }
                 }
             }
         }
+        $currentArea = isset($defaults['_area']) ? $defaults['_area'] : $this->getArea();
 
-        return self::$_fallbackScheme;
+        return self::$_fallbackScheme[$currentArea];
     }
 
     /**
