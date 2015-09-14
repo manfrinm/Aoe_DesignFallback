@@ -1,15 +1,19 @@
 {
-    "name":"fbrnc/aoe_designfallback",
+    "name":"manfrinm/aoe_designfallback",
     "type":"magento-module",
     "license":"OSL-3.0",
-    "homepage":"https://github.com/fbrnc/Aoe_DesignFallback",
+    "homepage":"https://github.com/manfrinm/Aoe_DesignFallback",
     "description":"Configure your custom design fallback strategy using this Magento module.",
     "authors":[
         {
             "name":"Fabrizio Branca",
             "email":"mail@{firstname}-{lastname}.de"
+        },
+        {
+            "name": "Matteo Manfrin",
+            "email": "matteo@hevelop.com"
         }
-    ],
+            ],
     "require":{
         "magento-hackathon/magento-composer-installer":"*"
     }
