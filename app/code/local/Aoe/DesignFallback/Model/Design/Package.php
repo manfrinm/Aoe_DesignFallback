@@ -74,7 +74,7 @@ class Aoe_DesignFallback_Model_Design_Package extends Mage_Core_Model_Design_Pac
                 }
             }
         }
-        $currentArea = isset($defaults['_area']) ? $defaults['_area'] : $this->getArea();
+        $currentArea = isset($defaults['_area']) && !in_array($defaults['_area'], array('header', 'footer')) ? $defaults['_area'] : $this->getArea();
 
         return self::$_fallbackScheme[$currentArea];
     }
