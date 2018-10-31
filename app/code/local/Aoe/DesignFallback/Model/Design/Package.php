@@ -73,6 +73,21 @@ class Aoe_DesignFallback_Model_Design_Package extends Mage_Core_Model_Design_Pac
                     }
                 }
             }
+
+            if ($defaults && isset($defaults['_area']) && $defaults['_area'] == 'frontend') {
+                $addDesignChangeToFallback = true;
+                foreach (self::$_fallbackScheme['frontend'] as $item) {
+                    if ($item['_package'] == $defaults['_package'] && $item['_theme'] == $defaults['_theme']) {
+                        $addDesignChangeToFallback = false;
+                    }
+                }
+                if ($addDesignChangeToFallback) {
+                    array_unshift(self::$_fallbackScheme['frontend'], [
+                        '_package' => $defaults['_package'],
+                        '_theme' => $defaults['_theme']
+                    ]);
+                }
+            }
         }
         $currentArea = isset($defaults['_area']) && !in_array($defaults['_area'], array('header', 'footer')) ? $defaults['_area'] : $this->getArea();
 
